@@ -1,0 +1,3 @@
+INSERT INTO bonus (ID,BONUS_NAME, BONUS_TYPE) VALUES
+(1,'LoginBonus', 'WELCOME_BONUS'),
+(2,'DailyBonus', 'DAILY_BONUS');
