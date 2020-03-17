@@ -1,13 +1,17 @@
 package com.bonus.service.bonus.controller;
 
 import com.bonus.service.bonus.entity.Bonus;
+import com.bonus.service.bonus.entity.CreateBonusRequest;
+import com.bonus.service.bonus.repository.BonusOperations;
 import com.bonus.service.bonus.service.BonusService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -19,16 +23,22 @@ public class BonusController {
     @Autowired
     BonusService bonusService;
 
+    @Autowired
+    BonusOperations bonusOperations;
+
     @PostMapping("/addBonus")
-    private void addBonus(Bonus bonus){
-        log.info("Creating bonus "+bonus.toString());
-        bonusService.addBonus(bonus);
-        log.info("Bonus "+bonus.toString()+ " was successfully created");
+    public void addBonus(@Valid @RequestBody CreateBonusRequest bonus){
+        bonusOperations.addBonus(bonus);
     }
 
-    @GetMapping("/getBonuses")
-    private  List<Bonus> getAllBonuses(){
-        return bonusService.getAllBonuses();
+    @GetMapping("/getAllBonuses")
+    public List<Bonus> getBonuses(){
+        return bonusOperations.getAllBonuses();
+    }
+
+    @GetMapping("/getBonusById")
+    public Optional<Bonus> getBonusById(@RequestParam Integer id){
+        return bonusOperations.getbonusById(id);
     }
 
     @PutMapping("/updateBonus")

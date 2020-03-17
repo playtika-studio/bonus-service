@@ -1,7 +1,9 @@
 package com.bonus.service.bonus.entity;
 
-import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,11 +12,13 @@ import java.sql.Date;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(toBuilder = true)
 public class Bonus {
 
     @Id
     @GeneratedValue
-//    @ApiModelProperty(hidden=true)
     int id;
 
     private String bonusName;
