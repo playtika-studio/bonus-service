@@ -2,6 +2,7 @@ package com.bonus.service.bonus.controller;
 
 import com.bonus.service.bonus.entity.Bonus;
 import com.bonus.service.bonus.entity.CreateBonusRequest;
+import com.bonus.service.bonus.exceptions.BonusException;
 import com.bonus.service.bonus.repository.BonusOperations;
 import com.bonus.service.bonus.service.BonusService;
 import org.slf4j.Logger;
@@ -27,30 +28,29 @@ public class BonusController {
     BonusOperations bonusOperations;
 
     @PostMapping("/addBonus")
-    public void addBonus(@Valid @RequestBody CreateBonusRequest bonus){
+    public void addBonus(@RequestBody CreateBonusRequest bonus) {
         bonusOperations.addBonus(bonus);
     }
 
     @GetMapping("/getAllBonuses")
-    public List<Bonus> getBonuses(){
+    public List<Bonus> getBonuses() {
         return bonusOperations.getAllBonuses();
     }
 
     @GetMapping("/getBonusById")
-    public Optional<Bonus> getBonusById(@RequestParam Integer id){
+    public Optional<Bonus> getBonusById(@RequestParam Integer id) {
         return bonusOperations.getbonusById(id);
     }
 
     @PutMapping("/updateBonus")
-    private Bonus updateBonus(Bonus bonus){
-        return bonusService.updateBonus(bonus);
+    private Bonus updateBonus(@RequestParam Integer bonusId, @RequestBody CreateBonusRequest createBonusRequest) throws BonusException {
+        return bonusService.updateBonus(bonusId, createBonusRequest);
     }
 
     @DeleteMapping("/deleteBonus/{id}")
-    private void deleteBonusById(int id){
+    private void deleteBonusById(int id) {
         bonusService.deleteBonusById(id);
     }
-
 
 
 }

@@ -13,4 +13,8 @@ public interface BonusOperations {
     List<Bonus> getAllBonuses();
 
     Optional<Bonus> getbonusById(Integer id);
+
+    Bonus updateBonus(int bonusId, CreateBonusRequest createBonusRequest) throws Exception;
+
+    void deleteBonusById(int id);
 }

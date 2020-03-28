@@ -2,6 +2,7 @@ package com.bonus.service.bonus.service;
 
 import com.bonus.service.bonus.entity.Bonus;
 import com.bonus.service.bonus.entity.CreateBonusRequest;
+import com.bonus.service.bonus.exceptions.BonusException;
 import com.bonus.service.bonus.repository.BonusOperations;
 import com.bonus.service.bonus.repository.BonusRepository;
 import lombok.extern.log4j.Log4j2;
@@ -40,10 +41,24 @@ public class BonusService implements BonusOperations {
 
     }
 
-    public Bonus updateBonus(Bonus bonus){
-         return bonusRepository.save(bonus);
+    public Bonus updateBonus(int bonusId, CreateBonusRequest createBonusRequest) throws BonusException {
+        Optional<Bonus> bonus = bonusRepository.findById(bonusId);
+        Bonus updateBonus;
+        if(bonus.isPresent()){
+             updateBonus = Bonus.builder()
+                    .id(bonusId)
+                    .bonusName(createBonusRequest.getBonusName())
+                    .bonusType(createBonusRequest.getBonusType())
+                    .startTime(createBonusRequest.getStartTime())
+                    .endTime(createBonusRequest.getEndTime()).build();
+            bonusRepository.save(updateBonus);
+        }else{
+            throw new BonusException("Bonus with id "+bonusId +" does not exist.");
+        }
+        return updateBonus;
     }
 
+    @Override
     public void deleteBonusById(int id){
         bonusRepository.deleteById(id);
     }
