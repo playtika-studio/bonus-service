@@ -1,16 +1,14 @@
 package com.bonus.service.bonus.controller;
 
-import com.bonus.service.bonus.entity.Bonus;
-import com.bonus.service.bonus.entity.CreateBonusRequest;
-import com.bonus.service.bonus.exceptions.BonusException;
+import com.bonus.service.common.entity.Bonus;
+import com.bonus.service.common.entity.CreateBonusRequest;
+import com.bonus.service.common.exceptions.BonusException;
 import com.bonus.service.bonus.repository.BonusOperations;
-import com.bonus.service.bonus.service.BonusService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,9 +18,6 @@ import java.util.Optional;
 public class BonusController {
 
     private static final Logger log = LoggerFactory.getLogger(BonusController.class);
-
-    @Autowired
-    BonusService bonusService;
 
     @Autowired
     BonusOperations bonusOperations;
@@ -44,13 +39,11 @@ public class BonusController {
 
     @PutMapping("/updateBonus")
     private Bonus updateBonus(@RequestParam Integer bonusId, @RequestBody CreateBonusRequest createBonusRequest) throws BonusException {
-        return bonusService.updateBonus(bonusId, createBonusRequest);
+        return bonusOperations.updateBonus(bonusId, createBonusRequest);
     }
 
     @DeleteMapping("/deleteBonus/{id}")
     private void deleteBonusById(int id) {
-        bonusService.deleteBonusById(id);
+        bonusOperations.deleteBonusById(id);
     }
-
-
 }

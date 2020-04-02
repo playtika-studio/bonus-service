@@ -1,5 +1,8 @@
 package com.bonus.service.bonus.configuration;
 
+import com.bonus.service.bonus.repository.BonusRepository;
+import com.bonus.service.common.service.BonusService;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
@@ -10,7 +13,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-public class SwaggerConfiguration {
+@EntityScan("com.bonus.service.common.entity")
+public class BonusConfiguration {
 
     @Bean
     public Docket api() {
@@ -19,6 +23,11 @@ public class SwaggerConfiguration {
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build();
+    }
+
+    @Bean
+    public BonusService bonusService(BonusRepository bonusRepository){
+        return new BonusService(bonusRepository);
     }
 
 }

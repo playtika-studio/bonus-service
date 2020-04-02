@@ -1,8 +1,8 @@
-package com.bonus.service.bonus.service;
+package com.bonus.service.common.service;
 
-import com.bonus.service.bonus.entity.Bonus;
-import com.bonus.service.bonus.entity.CreateBonusRequest;
-import com.bonus.service.bonus.exceptions.BonusException;
+import com.bonus.service.common.entity.Bonus;
+import com.bonus.service.common.exceptions.BonusException;
+import com.bonus.service.common.entity.CreateBonusRequest;
 import com.bonus.service.bonus.repository.BonusOperations;
 import com.bonus.service.bonus.repository.BonusRepository;
 import lombok.extern.log4j.Log4j2;
@@ -16,8 +16,12 @@ import java.util.Optional;
 @Log4j2
 public class BonusService implements BonusOperations {
 
-    @Autowired
     BonusRepository bonusRepository;
+
+    @Autowired
+    public BonusService(BonusRepository bonusRepository){
+        this.bonusRepository = bonusRepository;
+    }
 
     @Override
     public Bonus addBonus(CreateBonusRequest createBonusRequest) {
@@ -38,7 +42,6 @@ public class BonusService implements BonusOperations {
     @Override
     public Optional<Bonus> getbonusById(Integer id) {
         return bonusRepository.findById(id);
-
     }
 
     public Bonus updateBonus(int bonusId, CreateBonusRequest createBonusRequest) throws BonusException {

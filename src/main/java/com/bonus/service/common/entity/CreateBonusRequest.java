@@ -1,12 +1,10 @@
-package com.bonus.service.bonus.entity;
+package com.bonus.service.common.entity;
 
 import lombok.Builder;
 import lombok.Value;
 
-import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
-@NotNull
 @Builder
 @Value
 public class CreateBonusRequest {

@@ -1,4 +1,4 @@
-package com.bonus.service.bonus.entity;
+package com.bonus.service.common.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +14,7 @@ import java.sql.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder(toBuilder = true)
+@Builder
 public class Bonus {
 
     @Id
