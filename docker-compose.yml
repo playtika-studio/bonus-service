@@ -2,17 +2,18 @@ version: '2.2'
 
 services:
   eurekaserver:
-    build: ~/GuildDocs/eureka-server
-    image: eureka-server:v1
+#    build: ~/SERVICE_LOCATION/eureka-server
+    image: razvan1987/playtikaworkshop:eureka
     mem_limit: 350m
     ports:
       - 8761:8080
     hostname: eurekaserver
   bonus:
-    build: ~/GuildDocs/bonus-service
-    image: bonus-service:v1
+#    build: ~/SERVICE_LOCATION/bonus-service
+    image: razvan1987/playtikaworkshop:bonus
     mem_limit: 350m
     ports:
       - 8080:8080
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_PORT=8080
+      - EUREKA_HOST=eurekaserver
