@@ -1,6 +1,12 @@
 version: '2.2'
 
 services:
+  jenkins:
+    image: jenkins/jenkins
+    mem_limit: 350m
+    ports:
+      - 8081:8080
+    hostname: jenkins
   eurekaserver:
 #    build: ~/SERVICE_LOCATION/eureka-server
     image: razvan1987/playtikaworkshop:eureka

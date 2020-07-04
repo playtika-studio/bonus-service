@@ -37,8 +37,8 @@ public class BonusController {
         return bonusOperations.updateBonus(bonusId, createBonusRequest);
     }
 
-    @DeleteMapping("/deleteBonus/{id}")
-    private void deleteBonusById(int id) {
-        bonusOperations.deleteBonusById(id);
+    @DeleteMapping("/deleteBonus")
+    private void deleteBonusById(@RequestParam Integer bonusId) {
+        bonusOperations.deleteBonusById(bonusId);
     }
 }
