@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -25,7 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 )
 @TestPropertySource(locations = "classpath:application-test.properties")
 @Slf4j
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 public class BonusApplicationTests {
 
     @Autowired
