@@ -11,10 +11,8 @@ pipeline {
             steps {
                 // Get some code from a GitHub repository
                 git branch: 'bonus-docker', url: 'https://github.com/diaconur/bonus-service.git'
-
                 // Run Maven on a Unix agent.
                 sh "mvn clean install"
-
             }
 
             post {
