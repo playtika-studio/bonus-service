@@ -16,7 +16,6 @@ import java.sql.Date;
 @AllArgsConstructor
 @Builder
 public class Bonus {
-
     @Id
     @GeneratedValue
     int id;
