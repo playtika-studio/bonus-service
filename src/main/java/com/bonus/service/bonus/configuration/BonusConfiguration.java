@@ -29,5 +29,4 @@ public class BonusConfiguration {
     public BonusService bonusService(BonusRepository bonusRepository){
         return new BonusService(bonusRepository);
     }
-
 }
