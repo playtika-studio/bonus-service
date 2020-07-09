@@ -43,6 +43,7 @@ public class BonusApplicationTests {
         bonusService.addBonus(bonus);
     }
 
+
     @Test
     public void verifyBonusIsAvailable() {
         List<Bonus> bonuses = bonusService.getAllBonuses();
